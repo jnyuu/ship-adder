@@ -45,6 +45,7 @@ export const SHIP_SIZES = {
     maxAttributes: 2,
     maxHullPoints: 3,
     maxDamagePoints: 3,
+    weaponRange: 1,
     tierMultiplier: 1,
   },
   medium: {
@@ -54,6 +55,7 @@ export const SHIP_SIZES = {
     maxAttributes: 3,
     maxHullPoints: 8,
     maxDamagePoints: 8,
+    weaponRange: 2,
     tierMultiplier: 2,
   },
   large: {
@@ -63,6 +65,7 @@ export const SHIP_SIZES = {
     maxAttributes: 4,
     maxHullPoints: 20,
     maxDamagePoints: 20,
+    weaponRange: 3,
     tierMultiplier: 4,
   },
   ark: {
@@ -70,8 +73,9 @@ export const SHIP_SIZES = {
     description: "5km - INF",
     maxAttributelevel: 12,
     maxAttributes: 5,
-    maxHullPoints: Infinity,
-    maxDamagePoints: Infinity,
+    maxHullPoints: 200,
+    maxDamagePoints: 200,
+    weaponRange: 4,
     tierMultiplier: 8,
   },
 };

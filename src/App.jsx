@@ -58,13 +58,31 @@ export default function App() {
 
   function setShipHullPoints(hullPoints) {
     const newShipCreationObject = { ...shipCreationObject };
-    newShipCreationObject.hullPoints = hullPoints;
+    let convertedHullPoints = Number(hullPoints);
+    let validatedHullPoints = 1;
+    if (convertedHullPoints < 1) {
+      validatedHullPoints = 1;
+    } else if (convertedHullPoints > newShipCreationObject.maxHullPoints) {
+      validatedHullPoints = newShipCreationObject.maxHullPoints;
+    } else {
+      validatedHullPoints = convertedHullPoints;
+    }
+    newShipCreationObject.hullPoints = validatedHullPoints;
     setShipCreationObject(newShipCreationObject);
   }
 
   function setShipDamagePoints(damagePoints) {
     const newShipCreationObject = { ...shipCreationObject };
-    newShipCreationObject.damagePoints = damagePoints;
+    let convertedDamagePoints = Number(damagePoints);
+    let validatedDamagePoints = 0;
+    if (convertedDamagePoints < 0) {
+      validatedDamagePoints = 0;
+    } else if (convertedDamagePoints > newShipCreationObject.maxDamagePoints) {
+      validatedDamagePoints = newShipCreationObject.maxDamagePoints;
+    } else {
+      validatedDamagePoints = convertedDamagePoints;
+    }
+    newShipCreationObject.damagePoints = validatedDamagePoints;
     setShipCreationObject(newShipCreationObject);
   }
 
@@ -122,9 +140,7 @@ export default function App() {
               imageRendering: "pixelated",
             }}
           />
-          <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your ship
-          </h1>
+          <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900"></h1>
         </div>
         <form className="mt-8 space-y-6" action="#" method="POST">
           <div className="rounded-md shadow-xl p-4 ">
@@ -145,13 +161,24 @@ export default function App() {
             </div>
           </div>
           <div className="flex justify-around">
-            <div className="w-16 h-16 bg-yellow-500 rounded-md shadow-xl text-white text-center leading-[4rem] text-4xl drop-shadow-xl">
-              {shipCreationObject.damagePoints}
+            <div className="w-16 h-16 bg-yellow-500 rounded-md shadow-xl text-center leading-[4rem] text-3xl drop-shadow-xl">
+              <input
+                type="number"
+                value={shipCreationObject.damagePoints}
+                onChange={(e) => setShipDamagePoints(e.target.value)}
+                className="w-12 h-8"
+              />
             </div>
-            <div className="w-16 h-16 bg-red-500 rounded-md shadow-xl text-white text-center leading-[4rem] text-4xl drop-shadow-xl">
-              {shipCreationObject.hullPoints}
+            <div className="w-16 h-16 bg-red-500 rounded-md shadow-xl  text-center leading-[4rem] text-3xl drop-shadow-xl">
+              <input
+                type="number"
+                value={shipCreationObject.hullPoints}
+                onChange={(e) => setShipHullPoints(e.target.value)}
+                className="w-12 h-8"
+              />
             </div>
           </div>
+
           <div className="flex justify-between">
             <SliderInput
               step={1}
