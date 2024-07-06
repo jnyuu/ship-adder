@@ -161,6 +161,12 @@ export default function App() {
             </div>
           </div>
           <div className="flex justify-around">
+            <div className="w-20 h-16 bg-yellow-500 rounded-md shadow-xl text-center text-white leading-8 drop-shadow-xl">
+              <span>
+                min : 0 <br />
+                max : {shipCreationObject.maxDamagePoints}
+              </span>
+            </div>
             <div className="w-16 h-16 bg-yellow-500 rounded-md shadow-xl text-center leading-[4rem] text-3xl drop-shadow-xl">
               <input
                 type="number"
@@ -169,6 +175,7 @@ export default function App() {
                 className="w-12 h-8"
               />
             </div>
+
             <div className="w-16 h-16 bg-red-500 rounded-md shadow-xl  text-center leading-[4rem] text-3xl drop-shadow-xl">
               <input
                 type="number"
@@ -176,6 +183,12 @@ export default function App() {
                 onChange={(e) => setShipHullPoints(e.target.value)}
                 className="w-12 h-8"
               />
+            </div>
+            <div className="w-20 h-16 bg-red-500 rounded-md shadow-xl text-center text-white leading-8 drop-shadow-xl">
+              <span>
+                min : 1 <br />
+                max : {shipCreationObject.maxHullPoints}
+              </span>
             </div>
           </div>
 
