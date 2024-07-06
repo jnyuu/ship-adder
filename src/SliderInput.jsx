@@ -16,18 +16,9 @@ export default function SelectInput({
   maxValue,
   minValue,
 }) {
-  // const [selectedValue, setSelectedValue] = useState(options[0]);
   const mounted = useRef();
 
-  useEffect(() => {
-    // console.log("Selected value:", selectedValue);
-    // if (!mounted.current) {
-    //   console.log("Props:", currentValue);
-    //   mounted.current = true;
-    // } else {
-    //   console.log("Props:", currentValue);
-    // }
-  }, []);
+  useEffect(() => {}, []);
 
   const handleChange = (e) => {
     if (index !== undefined) {
@@ -35,7 +26,6 @@ export default function SelectInput({
     } else {
       setCurrentValue(e.target.value);
     }
-    // const value = ;
   };
 
   const marks = [
@@ -53,11 +43,7 @@ export default function SelectInput({
   return (
     <div className="mt-24 inline-block">
       <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>
-        <InputLabel
-          id={`id-${label}`}
-          className="-mt-20
-        "
-        >
+        <InputLabel id={`id-${label}`} className="-mt-20">
           {label}
         </InputLabel>
         <Slider

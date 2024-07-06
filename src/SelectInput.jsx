@@ -12,18 +12,9 @@ export default function SelectInput({
   setCurrentValue,
   index,
 }) {
-  // const [selectedValue, setSelectedValue] = useState(options[0]);
   const mounted = useRef();
 
-  useEffect(() => {
-    // console.log("Selected value:", selectedValue);
-    // if (!mounted.current) {
-    //   console.log("Props:", currentValue);
-    //   mounted.current = true;
-    // } else {
-    //   console.log("Props:", currentValue);
-    // }
-  }, []);
+  useEffect(() => {}, []);
 
   const handleChange = (e) => {
     if (index !== undefined) {
@@ -31,7 +22,6 @@ export default function SelectInput({
     } else {
       setCurrentValue(e.target.value);
     }
-    // const value = ;
   };
 
   return (
@@ -40,7 +30,6 @@ export default function SelectInput({
         <InputLabel id={`id-${label}`}>{label}</InputLabel>
         <Select
           labelId={`id-${label}`}
-          // id="demo-simple-select-standard"
           value={currentValue}
           onChange={handleChange}
           label={label}

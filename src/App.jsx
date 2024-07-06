@@ -1,23 +1,12 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { SHIP_SIZES, SHIP_ATTRIBUTES, SHIP_TIERS } from "./ShipData";
-import { LockClosedIcon } from "@heroicons/react/24/solid";
 
 import SelectInput from "./SelectInput";
 import TextInput from "./TextInput";
 import SliderInput from "./SliderInput";
 
 export default function App() {
-  const baseMaxHealth = 0;
-  const baseMaxDamage = 0;
-
-  // const [shipSizesOptions, setHipSizesOptions] = useState([]);
-
-  // const [shipName, setShipName] = useState("");
-  // const [shipSize, setShipSize] = useState("small");
-  // const [shipCreationOptions, setShipCreationOptions] = useState(
-  //   SHIP_SIZES[shipSize]
-  // );
   const [shipCreationObject, setShipCreationObject] = useState({
     sizeCategory: "small",
     description: "0m - 100m",
@@ -34,17 +23,12 @@ export default function App() {
     hullPoints: 1,
     damagePoints: 0,
   });
-  const [shipTier, setShipTier] = useState("t1");
 
   useEffect(() => {
     setShipCreationObject(createShipCreationObject(SHIP_SIZES["small"]));
-    // console.log(shipCreationObject);
   }, []);
 
-  useEffect(() => {
-    // console.log(shipCreationObject);
-    // console.log(shipCreationObject.sizeCategory);
-  }, [shipCreationObject]);
+  useEffect(() => {}, [shipCreationObject]);
 
   useEffect(() => {}, []);
 
@@ -65,6 +49,13 @@ export default function App() {
   function setShipSize(size) {
     setShipCreationObject(createShipCreationObject(SHIP_SIZES[size]));
   }
+
+  function setShipName(name) {
+    const newShipCreationObject = { ...shipCreationObject };
+    newShipCreationObject.name = name;
+    setShipCreationObject(newShipCreationObject);
+  }
+
   function setShipHullPoints(hullPoints) {
     const newShipCreationObject = { ...shipCreationObject };
     newShipCreationObject.hullPoints = hullPoints;
@@ -118,13 +109,6 @@ export default function App() {
     }
     return shipAttrubuteOptions;
   }
-  // function setShipAttribute(attribute, level, index) {
-  //   const newShipCreationObject = { ...shipCreationObject };
-  //   newShipCreationObject.attributes[index]({ name: attribute, level: level });
-  //   setShipCreationObject(newShipCreationObject);
-  // }
-
-  // function setShipTier(tier) {}
 
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -146,7 +130,11 @@ export default function App() {
           <div className="rounded-md shadow-xl p-4 ">
             <div>
               {/* Ship name input */}
-              <TextInput label={"Name The Ship"} />
+              <TextInput
+                label={"Name The Ship"}
+                currentValue={shipCreationObject.name}
+                setCurrentValue={setShipName}
+              />
               {/* Ship size select */}
               <SelectInput
                 options={Object.keys(SHIP_SIZES)}
@@ -166,7 +154,6 @@ export default function App() {
           </div>
           <div className="flex justify-between">
             <SliderInput
-              // options={SHIP_ATTRIBUTES.positive.scaling.allShips}
               step={1}
               maxValue={shipCreationObject.maxDamagePoints}
               minValue={0}
@@ -175,7 +162,6 @@ export default function App() {
               setCurrentValue={setShipDamagePoints}
             />
             <SliderInput
-              // options={SHIP_ATTRIBUTES.positive.scaling.allShips}
               step={1}
               maxValue={shipCreationObject.maxHullPoints}
               minValue={1}
@@ -205,7 +191,6 @@ export default function App() {
                   />
                   {shipCreationObject.attributes[index].name !== "Empty" && (
                     <SliderInput
-                      // options={SHIP_ATTRIBUTES.positive.scaling.allShips}
                       index={index}
                       step={1}
                       maxValue={shipCreationObject.maxAttributelevel}
