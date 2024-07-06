@@ -65,6 +65,17 @@ export default function App() {
   function setShipSize(size) {
     setShipCreationObject(createShipCreationObject(SHIP_SIZES[size]));
   }
+  function setShipHullPoints(hullPoints) {
+    const newShipCreationObject = { ...shipCreationObject };
+    newShipCreationObject.hullPoints = hullPoints;
+    setShipCreationObject(newShipCreationObject);
+  }
+
+  function setShipDamagePoints(damagePoints) {
+    const newShipCreationObject = { ...shipCreationObject };
+    newShipCreationObject.damagePoints = damagePoints;
+    setShipCreationObject(newShipCreationObject);
+  }
 
   function setShipAttributeName(name, index) {
     const newShipCreationObject = { ...shipCreationObject };
@@ -145,7 +156,36 @@ export default function App() {
               />
             </div>
           </div>
-          <div className=" ">
+          <div className="flex justify-around">
+            <div className="w-16 h-16 bg-yellow-500 rounded-md shadow-xl text-white text-center leading-[4rem] text-4xl drop-shadow-xl">
+              {shipCreationObject.damagePoints}
+            </div>
+            <div className="w-16 h-16 bg-red-500 rounded-md shadow-xl text-white text-center leading-[4rem] text-4xl drop-shadow-xl">
+              {shipCreationObject.hullPoints}
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <SliderInput
+              // options={SHIP_ATTRIBUTES.positive.scaling.allShips}
+              step={1}
+              maxValue={shipCreationObject.maxDamagePoints}
+              minValue={0}
+              label={"Select damage points"}
+              currentValue={shipCreationObject.damagePoints}
+              setCurrentValue={setShipDamagePoints}
+            />
+            <SliderInput
+              // options={SHIP_ATTRIBUTES.positive.scaling.allShips}
+              step={1}
+              maxValue={shipCreationObject.maxHullPoints}
+              minValue={1}
+              label={"Select hull points"}
+              currentValue={shipCreationObject.hullPoints}
+              setCurrentValue={setShipHullPoints}
+            />
+          </div>
+
+          <div className="">
             {shipCreationObject.attributes.map((attribute, index) => {
               return (
                 <div className="rounded-md shadow-xl p-4 ">

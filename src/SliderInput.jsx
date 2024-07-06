@@ -51,8 +51,8 @@ export default function SelectInput({
   console.log(marks);
 
   return (
-    <div className="mt-24">
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 240 }}>
+    <div className="mt-24 inline-block">
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>
         <InputLabel
           id={`id-${label}`}
           className="-mt-20
